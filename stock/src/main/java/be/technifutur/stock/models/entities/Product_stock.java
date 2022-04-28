@@ -3,6 +3,7 @@ package be.technifutur.stock.models.entities;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.UUID;
 
 @Builder
 @AllArgsConstructor
@@ -19,7 +20,7 @@ public class Product_stock {
     private Long id;
 
     @Column(nullable = false)
-    private String reference;
+    private UUID reference;
 
     @OneToOne
     @JoinColumn

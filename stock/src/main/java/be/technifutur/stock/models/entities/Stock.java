@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Builder
 @AllArgsConstructor
@@ -24,7 +25,7 @@ public class Stock {
     private Long currentStock;
 
     @Column(nullable = false)
-    private String reference;
+    private UUID reference;
 
     @OneToOne
     @JoinColumn
