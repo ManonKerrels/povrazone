@@ -26,7 +26,7 @@ public class Supplier {
     @Column
     private String address;
 
-    @ManyToMany
+    @OneToMany
     @JoinColumn
     private List<Delivery> deliveries = new ArrayList<>();
 

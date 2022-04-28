@@ -18,7 +18,7 @@ public class Product_stock {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column
+    @Column(nullable = false)
     private String reference;
 
     @OneToOne

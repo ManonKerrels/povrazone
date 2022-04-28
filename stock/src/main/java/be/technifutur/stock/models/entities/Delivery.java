@@ -24,12 +24,12 @@ public class Delivery {
     @Column
     private Date dateDelivery;
 
-    @ManyToMany
+    @ManyToOne
     @JoinColumn
-    List<Stock> stocks = new ArrayList<>();
+    private Stock stock;
 
-    @ManyToMany
+    @ManyToOne
     @JoinColumn
-    List<Supplier> suppliers = new ArrayList<>();
+    private Supplier supplier;
 
 }

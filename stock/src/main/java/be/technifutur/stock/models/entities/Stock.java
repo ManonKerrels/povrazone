@@ -23,14 +23,14 @@ public class Stock {
     @Column
     private Long currentStock;
 
-    @Column
+    @Column(nullable = false)
     private String reference;
 
     @OneToOne
     @JoinColumn
     private Product_stock product_stock;
 
-    @ManyToMany
+    @OneToMany
     @JoinColumn
     private List<Delivery> deliveries = new ArrayList<>();
 }
