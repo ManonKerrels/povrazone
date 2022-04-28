@@ -1,19 +1,17 @@
 package be.technifutur.product.models.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-@Data
 @Builder
 @Entity
 @Table(name = "product")
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Product {
@@ -32,7 +30,7 @@ public class Product {
     @Column(nullable = false, name = "product_price")
     private double price;
 
-    @Column(nullable = false, name = "product_reference")
+    @Column(nullable = false, name = "product_reference", unique = true)
     private UUID reference;
 
     @OneToMany(mappedBy = "product")

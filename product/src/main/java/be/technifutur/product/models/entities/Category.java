@@ -1,16 +1,14 @@
 package be.technifutur.product.models.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
-@Data
 @Builder
 @Entity
 @Table(name = "category")
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Category {
