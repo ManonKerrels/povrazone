@@ -1,6 +1,7 @@
 package be.technifutur.order.entity;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 import java.util.UUID;
 
 import javax.persistence.*;
@@ -15,7 +16,7 @@ import lombok.*;
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id_order;
+    private long id;
     @Column
     @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime order_date;
@@ -24,4 +25,6 @@ public class Order {
     private LocalDateTime shipping_date;
     @Column(unique = true)
     private UUID reference_order;
+    @OneToMany(mappedBy = "order")
+    Set<OrderProduct> orderProducts;
 }
