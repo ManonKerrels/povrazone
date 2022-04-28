@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Data
 @Builder
@@ -20,7 +21,7 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, name = "id")
-    private int id;
+    private long id;
 
     @Column(nullable = false, name = "product_name", length = 50)
     private String name;
@@ -32,7 +33,7 @@ public class Product {
     private double price;
 
     @Column(nullable = false, name = "product_reference")
-    private String reference;
+    private UUID reference;
 
     @OneToMany(mappedBy = "product")
     private List<Category> categories = new ArrayList<>();
