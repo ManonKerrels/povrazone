@@ -12,7 +12,7 @@ import java.util.UUID;
 @Builder
 public class ProductDTO {
 
-    private long id;
+    private Long id;
     private String name;
     private String brand;
     private double price;
@@ -22,7 +22,7 @@ public class ProductDTO {
     @AllArgsConstructor
     @Data
     public static class CategoryDTO{
-        private long id;
+        private Long id;
         private String name;
     }
 
