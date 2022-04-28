@@ -1,10 +1,9 @@
 package be.technifutur.client.models.entities;
 
+import be.technifutur.client.models.entities.embeddable.CartID;
 import lombok.*;
 
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.Objects;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -28,14 +27,4 @@ public class CartItem
     private Product product;
 
     private int quantity;
-
-    @Getter
-    @Setter
-    @EqualsAndHashCode
-    @Embeddable
-    private class CartID implements Serializable
-    {
-        private Long idProduct;
-        private Long idClient;
-    }
 }
