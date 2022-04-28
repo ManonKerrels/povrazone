@@ -9,7 +9,7 @@ import java.util.UUID;
 @Data
 public class ProductForm {
 
-    private long id;
+    private Long id;
     private String name;
     private String brand;
     private double price;
