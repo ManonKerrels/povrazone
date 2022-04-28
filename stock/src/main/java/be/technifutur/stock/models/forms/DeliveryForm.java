@@ -1,4 +1,4 @@
-package be.technifutur.stock.models.dtos;
+package be.technifutur.stock.models.forms;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,16 +9,15 @@ import java.util.UUID;
 
 @Data
 @Builder
-public class DeliveryDTO {
+public class DeliveryForm {
 
-    private Long id;
     private Date dateDelivery;
-    private StockDTO stock;
-    private SupplierDTO supplier;
+    private Stock stock;
+    private Supplier supplier;
 
     @Data
     @AllArgsConstructor
-    public static class StockDTO{
+    public static class Stock{
         private Long id;
         private Long currentStock;
         private UUID reference;
@@ -26,7 +25,7 @@ public class DeliveryDTO {
 
     @Data
     @AllArgsConstructor
-    public static class SupplierDTO{
+    public static class Supplier{
         private Long id;
         private String name;
     }

@@ -1,5 +1,6 @@
-package be.technifutur.stock.models.dtos;
+package be.technifutur.stock.models.forms;
 
+import be.technifutur.stock.models.entities.Stock;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -8,15 +9,14 @@ import java.util.UUID;
 
 @Data
 @Builder
-public class Product_stockDTO {
+public class Product_stockForm {
 
-    private Long id;
     private UUID reference;
-    private StockDTO stock;
+    private Stock stock;
 
     @Data
     @AllArgsConstructor
-    public static  class StockDTO{
+    public static class Stock{
         private Long id;
         private Long currentStock;
         private UUID reference;
