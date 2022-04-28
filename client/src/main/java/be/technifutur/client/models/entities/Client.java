@@ -38,7 +38,7 @@ public class Client
     @Column(name = "address", nullable = false)
     private String address;
 
-    @Column(name = "reference", nullable = false)
+    @Column(name = "reference", nullable = false, length = 20)
     private String reference;
 
     @OneToMany
