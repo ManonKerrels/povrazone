@@ -1,4 +1,4 @@
-package be.technifutur.order.entity;
+package be.technifutur.order.models.entities;
 
 import java.time.LocalDateTime;
 import java.util.Set;
@@ -17,14 +17,14 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column
+    @Column(name = "order_date")
     @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime order_date;
-    @Column
+    private LocalDateTime orderDate;
+    @Column(name = "shipping_date")
     @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime shipping_date;
-    @Column(unique = true)
-    private UUID reference_order;
+    private LocalDateTime shippingDate;
+    @Column(name="reference_order",unique = true)
+    private UUID referenceOrder;
     @OneToMany(mappedBy = "order")
     Set<OrderProduct> orderProducts;
 }

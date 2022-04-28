@@ -1,4 +1,4 @@
-package be.technifutur.order.entity;
+package be.technifutur.order.models.entities;
 
 import lombok.*;
 
