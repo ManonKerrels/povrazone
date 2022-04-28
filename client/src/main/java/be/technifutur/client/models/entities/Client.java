@@ -26,7 +26,7 @@ public class Client
     @Column(name = "last_name", nullable = false, length = 50)
     private String lastName;
 
-    @Column(name = "username", nullable = false, length = 50)
+    @Column(name = "username", nullable = false, length = 50, unique = true)
     private String username;
 
     @Column(name = "password", nullable = false, length = 50)
@@ -38,7 +38,7 @@ public class Client
     @Column(name = "address", nullable = false)
     private String address;
 
-    @Column(name = "reference", nullable = false, length = 20)
+    @Column(name = "reference", nullable = false, length = 20, unique = true)
     private String reference;
 
     @OneToMany
