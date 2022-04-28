@@ -26,7 +26,7 @@ public class Supplier {
     @Column
     private String address;
 
-    @OneToMany
+    @OneToMany(mappedBy = "supplier")
     @JoinColumn
     private List<Delivery> deliveries = new ArrayList<>();
 

@@ -31,7 +31,7 @@ public class Stock {
     @JoinColumn
     private Product_stock product_stock;
 
-    @OneToMany
+    @OneToMany(mappedBy = "stock")
     @JoinColumn
     private List<Delivery> deliveries = new ArrayList<>();
 }

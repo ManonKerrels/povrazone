@@ -22,7 +22,7 @@ public class Product_stock {
     @Column(nullable = false, unique = true)
     private UUID reference;
 
-    @OneToOne
+    @OneToOne(mappedBy = "product_stock")
     @JoinColumn
     private Stock stock;
 }
