@@ -6,28 +6,19 @@ import lombok.Data;
 
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 @Data
 @Builder
-public class StockDTO {
+public class SupplierDTO {
 
     private Long id;
-    private Long currentStock;
-    private UUID reference;
-    private Product_stockDTO product_stock;
+    private String name;
+    private String address;
     private List<DeliveryDTO> deliveries;
 
     @Data
     @AllArgsConstructor
-    private static class Product_stockDTO{
-        private Long id;
-        private UUID reference;
-    }
-
-    @Data
-    @AllArgsConstructor
-    private static class DeliveryDTO {
+    private static class DeliveryDTO{
         private Long id;
         private Date dateDelivery;
     }
