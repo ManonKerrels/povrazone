@@ -1,7 +1,15 @@
 package be.technifutur.client.models.entities;
 
-import javax.persistence.*;
+import lombok.*;
 
+import javax.persistence.*;
+import java.util.UUID;
+
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "product")
 public class Product
@@ -11,14 +19,9 @@ public class Product
     @Column(name = "id", nullable = false)
     private Long id;
 
-    public Long getId()
-    {
-        return id;
-    }
+    @Column(nullable = false, name = "product_name", length = 50)
+    private String name;
 
-    public void setId(Long id)
-    {
-        this.id = id;
-    }
-
+    @Column(nullable = false, name = "product_reference")
+    private UUID reference;
 }

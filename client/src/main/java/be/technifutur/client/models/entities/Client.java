@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Builder
 @AllArgsConstructor
@@ -50,5 +51,8 @@ public class Client
             joinColumns = @JoinColumn(name = "client_id"),
             inverseJoinColumns = @JoinColumn(name = "favorites_id"))
     private List<Product> favorites = new ArrayList<>();
+
+    @OneToMany(mappedBy = "client")
+    private List<CartItem> cart = new ArrayList<>();
 
 }
