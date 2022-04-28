@@ -24,7 +24,7 @@ public class Stock {
     @Column
     private Long currentStock;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private UUID reference;
 
     @OneToOne

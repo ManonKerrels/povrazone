@@ -3,9 +3,7 @@ package be.technifutur.stock.models.entities;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 @Builder
 @AllArgsConstructor
