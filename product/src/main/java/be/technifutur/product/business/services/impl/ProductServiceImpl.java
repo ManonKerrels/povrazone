@@ -61,7 +61,7 @@ public class ProductServiceImpl implements ProductService {
         entity.setName(form.getName());
         entity.setBrand(form.getBrand());
         entity.setPrice(form.getPrice());
-//        entity.setCategory(form.getCategory());
+        entity.setCategory(form.getCategory());
 
         entity = repository.save(entity);
 

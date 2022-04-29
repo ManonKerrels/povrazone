@@ -3,7 +3,6 @@ package be.technifutur.product.models.forms;
 import be.technifutur.product.models.entities.Category;
 import lombok.Data;
 
-import java.util.List;
 import java.util.UUID;
 
 @Data
