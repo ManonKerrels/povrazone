@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.UUID;
 
@@ -11,7 +12,7 @@ import java.util.UUID;
 @Builder
 public class DeliveryForm {
 
-    private Date dateDelivery;
+    private LocalDate dateDelivery;
     private Stock stock;
     private Supplier supplier;
 

@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -28,6 +29,6 @@ public class StockForm {
     @AllArgsConstructor
     public static class Delivery{
         private Long id;
-        private Date dateDelivery;
+        private LocalDate dateDelivery;
     }
 }
