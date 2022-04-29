@@ -1,5 +1,7 @@
 package be.technifutur.stock.models.dtos;
 
+import be.technifutur.stock.models.entities.Delivery;
+import be.technifutur.stock.models.entities.Stock;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -30,5 +32,12 @@ public class StockDTO {
     public static class DeliveryDTO {
         private Long id;
         private Date dateDelivery;
+
+        public static DeliveryDTO of(Delivery entity){
+            if (entity == null){
+                return null;
+            }
+            return new DeliveryDTO(entity.getId(), entity.getDateDelivery());
+        }
     }
 }
