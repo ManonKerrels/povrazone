@@ -17,9 +17,6 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name = "order_date")
-    @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime orderDate;
     @Column(name = "shipping_date")
     @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime shippingDate;
@@ -27,4 +24,6 @@ public class Order {
     private UUID referenceOrder;
     @OneToMany(mappedBy = "order")
     Set<OrderProduct> orderProducts;
+    @ManyToOne
+    private Client client;
 }
