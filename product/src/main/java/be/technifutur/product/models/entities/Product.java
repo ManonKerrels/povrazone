@@ -1,6 +1,7 @@
 package be.technifutur.product.models.entities;
 
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -30,11 +31,16 @@ public class Product {
     @Column(nullable = false, name = "product_price")
     private double price;
 
+//    @GeneratedValue(generator = "UUID")
+//    @GenericGenerator(
+//            name = "UUID",
+//            strategy = "org.hibernate.id.UUIDGenerator"
+//    )
     @Column(nullable = false, name = "product_reference", unique = true)
     private UUID reference;
 
-    @OneToMany(mappedBy = "product")
-    private List<Category> categories = new ArrayList<>();
+    @ManyToOne
+    private Category category ;
 
 
 }

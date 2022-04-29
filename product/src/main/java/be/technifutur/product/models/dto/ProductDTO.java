@@ -17,7 +17,7 @@ public class ProductDTO {
     private String brand;
     private double price;
     private UUID reference;
-    private List<CategoryDTO> categories;
+    private CategoryDTO category;
 
     @AllArgsConstructor
     @Data

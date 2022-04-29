@@ -3,6 +3,8 @@ package be.technifutur.product.models.entities;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Builder
 @Entity
@@ -21,7 +23,7 @@ public class Category {
     @Column(nullable = false, name = "product_name", length = 50)
     private String name;
 
-    @ManyToOne
-    private Product product;
+    @OneToMany(mappedBy = "category")
+    private List<Product> products = new ArrayList<>();
 
 }

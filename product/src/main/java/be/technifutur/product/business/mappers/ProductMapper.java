@@ -16,11 +16,12 @@ public class ProductMapper {
         if (entity == null)
             return null;
 
+//
+//        Category category = entity.getCategory();
+//        ProductDTO.CategoryDTO categoryDTO =
+//                category == null ? null :
+//                        new ProductDTO.CategoryDTO(category.getId(), category.getName());
 
-        List<Category> categories = entity.getCategories();
-        List<ProductDTO.CategoryDTO> categoriesDTOS =
-                categories == null ? null :
-                        categories.stream().map(category -> new ProductDTO.CategoryDTO(category.getId(), category.getName())).toList();
 
 
         return ProductDTO.builder()
@@ -29,7 +30,7 @@ public class ProductMapper {
                 .brand(entity.getBrand())
                 .price(entity.getPrice())
                 .reference(entity.getReference())
-                .categories(categoriesDTOS)
+//                .category(categoryDTO)
                 .build();
     }
 
@@ -45,7 +46,7 @@ public class ProductMapper {
                 .brand(form.getBrand())
                 .price(form.getPrice())
                 .reference(form.getReference())
-                .categories(form.getCategories())
+//                .category(form.getCategory())
                 .build();
 
 

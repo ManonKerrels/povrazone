@@ -14,5 +14,5 @@ public class ProductForm {
     private String brand;
     private double price;
     private UUID reference;
-    private List<Category> categories;
+    private Category category;
 }

@@ -13,4 +13,12 @@
 	<name>product</name>
 	<description>Demo project for Spring Boot</description>
 
+
+	<dependencies>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+	</dependencies>
 </project>

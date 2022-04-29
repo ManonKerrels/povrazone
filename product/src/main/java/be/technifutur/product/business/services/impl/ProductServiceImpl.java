@@ -7,10 +7,12 @@ import be.technifutur.product.models.dto.ProductDTO;
 import be.technifutur.product.models.entities.Product;
 import be.technifutur.product.models.forms.ProductForm;
 import be.technifutur.product.repositories.ProductRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Locale;
 
+@Service
 public class ProductServiceImpl implements ProductService {
 
     private final ProductMapper mapper;
@@ -59,7 +61,7 @@ public class ProductServiceImpl implements ProductService {
         entity.setName(form.getName());
         entity.setBrand(form.getBrand());
         entity.setPrice(form.getPrice());
-        entity.setCategories(form.getCategories());
+//        entity.setCategory(form.getCategory());
 
         entity = repository.save(entity);
 
