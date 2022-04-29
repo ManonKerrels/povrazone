@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Data
@@ -19,6 +19,6 @@ public class SupplierForm {
     @AllArgsConstructor
     public static class Delivery{
         private Long id;
-        private Date dateDelivery;
+        private LocalDate dateDelivery;
     }
 }

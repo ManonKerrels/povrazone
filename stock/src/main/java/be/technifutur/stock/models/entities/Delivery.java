@@ -3,6 +3,7 @@ package be.technifutur.stock.models.entities;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Builder
@@ -20,7 +21,7 @@ public class Delivery {
     private Long id;
 
     @Column
-    private Date dateDelivery;
+    private LocalDate dateDelivery;
 
     @ManyToOne
     @JoinColumn(name = "stock")
