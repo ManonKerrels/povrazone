@@ -1,7 +1,5 @@
 package be.technifutur.stock.rabbit;
 
-import org.springframework.stereotype.Component;
-
 //@Component
 //public class MessagesListener{
 //
