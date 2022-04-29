@@ -55,10 +55,6 @@ public class StockServiceImpl implements StockService{
                 .orElseThrow(()-> new ElementNotFoundException(form.getProduct_stock().getId(), Product_stock.class));
         entity.setProduct_stock(product_stock);
 
-//        Delivery delivery = deliveryRepository.findById(form.getDeliveries().stream().map(StockDTO.DeliveryDTO::of).toList())
-//                .orElseThrow(()-> new ElementNotFoundException(form.getDeliveries(), Delivery.class));
-//        entity.setDeliveries(delivery);
-
         entity = repository.save(entity);
         return mapper.entityToDTO(entity);
     }
