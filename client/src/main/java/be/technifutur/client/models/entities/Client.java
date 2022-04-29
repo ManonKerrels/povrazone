@@ -41,10 +41,6 @@ public class Client
     @Column(name = "reference", nullable = false, length = 20, unique = true)
     private String reference;
 
-    @OneToMany
-    @JoinColumn(name = "client_id")
-    private List<Order> orders = new ArrayList<>();
-
     @ManyToMany
     @JoinTable(name = "client_favorites",
             joinColumns = @JoinColumn(name = "client_id"),

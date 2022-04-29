@@ -25,7 +25,7 @@ public class ClientController
     }
 
     @GetMapping("/{id}")
-    public ClientDTO getOne(Long id)
+    public ClientDTO getOne(@PathVariable Long id)
     {
         return service.getOneById(id);
     }

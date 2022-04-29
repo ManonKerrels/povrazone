@@ -78,8 +78,8 @@ public class ClientDTO implements Serializable
                 c.getMail(),
                 c.getAddress(),
                 c.getReference(),
-                c.getFavorites().stream().map(ProductDto::of).toList(),
-                c.getCart().stream().map(CartItemDto::of).toList()
+                c.getFavorites() == null ? null : c.getFavorites().stream().map(ProductDto::of).toList(),
+                c.getCart() == null ? null : c.getCart().stream().map(CartItemDto::of).toList()
         );
     }
 }

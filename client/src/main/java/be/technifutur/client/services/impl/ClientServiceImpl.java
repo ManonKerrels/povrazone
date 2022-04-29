@@ -23,7 +23,7 @@ public class ClientServiceImpl implements ClientService
     @Override
     public ClientDTO insert(ClientForm form)
     {
-        return ClientDTO.of(form.toClient());
+        return ClientDTO.of(repo.save(form.toClient()));
     }
 
     @Override
