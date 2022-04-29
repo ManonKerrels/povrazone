@@ -1,5 +1,6 @@
 package be.technifutur.stock.models.dtos;
 
+import be.technifutur.stock.models.entities.Stock;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

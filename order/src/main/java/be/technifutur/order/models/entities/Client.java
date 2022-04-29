@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Builder
 @AllArgsConstructor
@@ -24,4 +25,6 @@ public class Client {
     private String address;
     @Column(name = "reference_client", nullable = false, length = 20, unique = true)
     private String reference;
+    @OneToMany(mappedBy = "client")
+    Set<Order> orders;
 }

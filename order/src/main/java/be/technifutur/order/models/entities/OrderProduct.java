@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -27,6 +28,11 @@ public class OrderProduct {
     @MapsId("idProduct")
     @JoinColumn(name = "product_id")
     private Product product;
+
+    
+    @Column(name = "order_date")
+    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime orderDate;
 
     @Column(name = "quantity")
     private int quantity;

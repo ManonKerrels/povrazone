@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:stock_povrazone_db
+    username: user
+    password: pswd
+  jpa:
+    show-sql: true
+  h2:
+    console:
+      enabled: true
+      path: /h2
+

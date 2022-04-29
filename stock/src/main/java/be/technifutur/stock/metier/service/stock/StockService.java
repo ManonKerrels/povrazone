@@ -13,10 +13,12 @@ public interface StockService {
 
     StockDTO insert(StockForm form);
 
-    StockDTO update(StockForm form);
+    StockDTO update(Long id, StockForm form);
 
     StockDTO delete(Long id);
 
-    //update Product_stock
-    //update List<Delivery>
+    StockDTO updateProduct_stock(Long id, Long idProduct);
+
+    StockDTO updateDelivery(Long id, Long idDeliery);
+
 }
