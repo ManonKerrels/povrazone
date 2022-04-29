@@ -1,7 +1,6 @@
 package be.technifutur.stock.models.dtos;
 
 import be.technifutur.stock.models.entities.Delivery;
-import be.technifutur.stock.models.entities.Product_stock;
 import be.technifutur.stock.models.entities.Supplier;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,22 +17,23 @@ public class StockDTO {
     private Long id;
     private int currentStock;
     private UUID reference;
-    private Product_stockDTO product_stock;
+    private UUID referenceProduct;
+    private String nameProduct;
     private List<DeliveryDTO> deliveries;
 
-    @Data
-    @AllArgsConstructor
-    public static class Product_stockDTO{
-        private Long id;
-        private UUID reference;
-
-        public static Product_stockDTO of(Product_stock entity){
-            if (entity == null){
-                return null;
-            }
-            return new Product_stockDTO(entity.getId(), entity.getReference());
-        }
-    }
+//    @Data
+//    @AllArgsConstructor
+//    public static class Product_stockDTO{
+//        private Long id;
+//        private UUID reference;
+//
+//        public static Product_stockDTO of(Product_stock entity){
+//            if (entity == null){
+//                return null;
+//            }
+//            return new Product_stockDTO(entity.getId(), entity.getReference());
+//        }
+//    }
 
     @Data
     @AllArgsConstructor

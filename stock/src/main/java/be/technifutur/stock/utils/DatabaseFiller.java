@@ -35,24 +35,24 @@ public class DatabaseFiller implements InitializingBean {
         Stock s = Stock.builder()
                 .currentStock(200)
                 .reference(UUID.randomUUID())
-//                .product_stock(null)
-//                .deliveries(null)
+                .referenceProduct(UUID.randomUUID())
+                .nameProduct("Carottes")
                 .build();
         repository.save(s);
 
         Stock s1 = Stock.builder()
                 .currentStock(50)
                 .reference(UUID.randomUUID())
-//                .product_stock(null)
-//                .deliveries(null)
+                .referenceProduct(UUID.randomUUID())
+                .nameProduct("Tomates")
                 .build();
         repository.save(s1);
 
         Stock s2 = Stock.builder()
                 .currentStock(666)
                 .reference(UUID.randomUUID())
-//                .product_stock(new Product_stock())
-//                .deliveries(null)
+                .referenceProduct(UUID.randomUUID())
+                .nameProduct("Poivrons")
                 .build();
         repository.save(s2);
 

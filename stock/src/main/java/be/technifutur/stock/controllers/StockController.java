@@ -1,7 +1,7 @@
 package be.technifutur.stock.controllers;
 
 import be.technifutur.stock.exceptions.ElementNotFoundException;
-import be.technifutur.stock.metier.service.stock.StockService;
+import be.technifutur.stock.metier.service.StockService;
 import be.technifutur.stock.models.dtos.StockDTO;
 import be.technifutur.stock.models.forms.StockForm;
 import org.springframework.http.HttpStatus;
@@ -48,11 +48,6 @@ public class StockController {
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<StockDTO> delete(@PathVariable Long id){
         return ResponseEntity.ok(service.delete(id));
-    }
-
-    @PutMapping("/updateProduct/{id}/product/{idProduct}")
-    public ResponseEntity<StockDTO> updateProduct(@PathVariable Long id, @PathVariable Long idProduct){
-        return ResponseEntity.ok(service.updateProduct_stock(id, idProduct));
     }
 
 }

@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -15,15 +14,11 @@ public class StockForm {
 
     private int currentStock;
     private UUID reference;
-    private Product_stock product_stock;
+    private UUID referenceProduct;
+    private String nameProduct;
     private List<Delivery> deliveries;
 
-    @Data
-    @AllArgsConstructor
-    public static class Product_stock{
-        private Long id;
-        private UUID reference;
-    }
+
 
     @Data
     @AllArgsConstructor

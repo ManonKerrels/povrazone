@@ -1,4 +1,4 @@
-package be.technifutur.stock.metier.service.stock;
+package be.technifutur.stock.metier.service;
 
 import be.technifutur.stock.models.dtos.StockDTO;
 import be.technifutur.stock.models.forms.StockForm;
@@ -20,11 +20,6 @@ public class StockServiceMock implements StockService{
 
     @Override
     public StockDTO delete(Long id) { return null; }
-
-    @Override
-    public StockDTO updateProduct_stock(Long id, Long idProduct) {
-        return null;
-    }
 
     @Override
     public StockDTO updateDelivery(Long id, Long idDeliery) {

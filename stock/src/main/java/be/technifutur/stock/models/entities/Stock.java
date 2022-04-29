@@ -25,16 +25,14 @@ public class Stock {
     @Column
     private int currentStock;
 
-//    @GeneratedValue(generator = "UUID")
-//    @GenericGenerator(
-//            name = "UUID",
-//            strategy = "org.hibernate.id.UUIDGenerator"
-//    )
     @Column(nullable = false, unique = true)
     private UUID reference;
 
-    @OneToOne(mappedBy = "stock", cascade = CascadeType.PERSIST)
-    private Product_stock product_stock;
+    @Column(name = "reference_product")
+    private UUID referenceProduct;
+
+    @Column(name = "name_product")
+    private String nameProduct;
 
     @OneToMany(mappedBy = "stock", cascade = CascadeType.PERSIST)
     private List<Delivery> deliveries = new ArrayList<>();

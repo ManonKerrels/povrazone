@@ -1,18 +1,17 @@
-package be.technifutur.stock.metier.service.stock;
+package be.technifutur.stock.metier.service;
 
 import be.technifutur.stock.exceptions.ElementNotFoundException;
 import be.technifutur.stock.metier.mapper.StockMapper;
 import be.technifutur.stock.models.dtos.StockDTO;
-import be.technifutur.stock.models.entities.Product_stock;
 import be.technifutur.stock.models.entities.Stock;
 import be.technifutur.stock.models.forms.StockForm;
 import be.technifutur.stock.repositories.DeliveryRepository;
-import be.technifutur.stock.repositories.Product_stockRepository;
 import be.technifutur.stock.repositories.StockRepository;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @Transactional
@@ -20,13 +19,11 @@ public class StockServiceImpl implements StockService{
 
     private final StockRepository repository;
     private final StockMapper mapper;
-    private final Product_stockRepository product_stockRepository;
     private final DeliveryRepository deliveryRepository;
 
-    public StockServiceImpl(StockRepository repository, StockMapper mapper, Product_stockRepository product_stockRepository, DeliveryRepository deliveryRepository) {
+    public StockServiceImpl(StockRepository repository, StockMapper mapper, DeliveryRepository deliveryRepository) {
         this.repository = repository;
         this.mapper = mapper;
-        this.product_stockRepository = product_stockRepository;
         this.deliveryRepository = deliveryRepository;
     }
 
@@ -50,10 +47,8 @@ public class StockServiceImpl implements StockService{
     @Override
     public StockDTO insert(StockForm form) {
         Stock entity = mapper.formToEntity(form);
-        Product_stock product_stock = product_stockRepository.findById(form.getProduct_stock().getId())
-                .orElseThrow(()-> new ElementNotFoundException(form.getProduct_stock().getId(), Product_stock.class));
-        entity.setProduct_stock(product_stock);
-
+        entity.setReference(UUID.randomUUID());
+        entity.setReferenceProduct(UUID.randomUUID());
         entity = repository.save(entity);
         return mapper.entityToDTO(entity);
     }
@@ -63,7 +58,9 @@ public class StockServiceImpl implements StockService{
         Stock entity = repository.findById(id)
                 .orElseThrow(() -> new ElementNotFoundException(id, Stock.class));
         entity.setCurrentStock(form.getCurrentStock());
-        entity.setReference(form.getReference());
+        entity.getReference();
+        entity.getReferenceProduct();
+        entity.setNameProduct(form.getNameProduct());
         entity = repository.save(entity);
         return mapper.entityToDTO(entity);
     }
@@ -73,16 +70,6 @@ public class StockServiceImpl implements StockService{
         StockDTO dto = getOne(id);
         repository.deleteById(id);
         return dto;
-    }
-
-    @Override
-    public StockDTO updateProduct_stock(Long id, Long idProduct) {
-        Stock stock = repository.findById(id)
-                .orElseThrow(() -> new ElementNotFoundException(id, Stock.class));
-        Product_stock product_stock = product_stockRepository.findById(idProduct)
-                .orElseThrow(() -> new ElementNotFoundException(idProduct, StockForm.Product_stock.class));
-        stock.setProduct_stock(product_stock);
-        return mapper.entityToDTO(stock);
     }
 
     @Override
