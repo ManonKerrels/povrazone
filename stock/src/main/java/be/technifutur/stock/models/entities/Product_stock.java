@@ -1,6 +1,7 @@
 package be.technifutur.stock.models.entities;
 
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.UUID;
@@ -19,10 +20,15 @@ public class Product_stock {
     @Column(name = "id", nullable = false)
     private Long id;
 
+//    @GeneratedValue(generator = "UUID")
+//    @GenericGenerator(
+//            name = "UUID",
+//            strategy = "org.hibernate.id.UUIDGenerator"
+//    )
     @Column(nullable = false, unique = true)
     private UUID reference;
 
-    @OneToOne(mappedBy = "product_stock")
-    @JoinColumn
+    @OneToOne
+    @JoinColumn(name = "stock")
     private Stock stock;
 }

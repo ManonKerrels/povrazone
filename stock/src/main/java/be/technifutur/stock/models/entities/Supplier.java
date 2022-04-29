@@ -26,8 +26,7 @@ public class Supplier {
     @Column
     private String address;
 
-    @OneToMany(mappedBy = "supplier")
-    @JoinColumn
+    @OneToMany(mappedBy = "supplier", cascade = CascadeType.PERSIST)
     private List<Delivery> deliveries = new ArrayList<>();
 
 }

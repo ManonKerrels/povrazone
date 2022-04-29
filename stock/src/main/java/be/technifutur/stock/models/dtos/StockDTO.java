@@ -15,7 +15,7 @@ import java.util.UUID;
 public class StockDTO {
 
     private Long id;
-    private Long currentStock;
+    private int currentStock;
     private UUID reference;
     private Product_stockDTO product_stock;
     private List<DeliveryDTO> deliveries;

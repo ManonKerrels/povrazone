@@ -18,7 +18,7 @@ public class Product_stockForm {
     @AllArgsConstructor
     public static class Stock{
         private Long id;
-        private Long currentStock;
+        private int currentStock;
         private UUID reference;
     }
 }

@@ -1,6 +1,7 @@
 package be.technifutur.stock.models.entities;
 
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -22,16 +23,19 @@ public class Stock {
     private Long id;
 
     @Column
-    private Long currentStock;
+    private int currentStock;
 
+//    @GeneratedValue(generator = "UUID")
+//    @GenericGenerator(
+//            name = "UUID",
+//            strategy = "org.hibernate.id.UUIDGenerator"
+//    )
     @Column(nullable = false, unique = true)
     private UUID reference;
 
-    @OneToOne
-    @JoinColumn
+    @OneToOne(mappedBy = "stock", cascade = CascadeType.PERSIST)
     private Product_stock product_stock;
 
-    @OneToMany(mappedBy = "stock")
-    @JoinColumn
+    @OneToMany(mappedBy = "stock", cascade = CascadeType.PERSIST)
     private List<Delivery> deliveries = new ArrayList<>();
 }
