@@ -3,7 +3,6 @@ package be.technifutur.stock.metier.service.stock;
 import be.technifutur.stock.exceptions.ElementNotFoundException;
 import be.technifutur.stock.metier.mapper.StockMapper;
 import be.technifutur.stock.models.dtos.StockDTO;
-import be.technifutur.stock.models.entities.Delivery;
 import be.technifutur.stock.models.entities.Product_stock;
 import be.technifutur.stock.models.entities.Stock;
 import be.technifutur.stock.models.forms.StockForm;

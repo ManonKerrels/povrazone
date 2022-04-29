@@ -23,11 +23,11 @@ public class Delivery {
     private Date dateDelivery;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "stock")
     private Stock stock;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "supplier")
     private Supplier supplier;
 
 }

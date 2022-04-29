@@ -12,7 +12,7 @@ import java.util.UUID;
 @Builder
 public class StockForm {
 
-    private Long currentStock;
+    private int currentStock;
     private UUID reference;
     private Product_stock product_stock;
     private List<Delivery> deliveries;
