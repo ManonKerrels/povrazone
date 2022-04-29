@@ -6,8 +6,6 @@ import be.technifutur.product.models.entities.Product;
 import be.technifutur.product.models.forms.ProductForm;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class ProductMapper {
 

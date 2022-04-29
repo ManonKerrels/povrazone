@@ -1,11 +1,8 @@
 package be.technifutur.product.models.dto;
 
-import be.technifutur.product.models.entities.Category;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-
-import java.util.List;
 import java.util.UUID;
 
 @Data

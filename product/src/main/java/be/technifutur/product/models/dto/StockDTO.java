@@ -1,6 +1,5 @@
 package be.technifutur.product.models.dto;
 
-
 import lombok.Builder;
 import lombok.Data;
 

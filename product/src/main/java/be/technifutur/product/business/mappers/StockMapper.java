@@ -1,9 +1,7 @@
 package be.technifutur.product.business.mappers;
 
 import be.technifutur.product.models.dto.StockDTO;
-import be.technifutur.product.models.entities.Product;
 import be.technifutur.product.models.entities.Stock;
-import be.technifutur.product.models.forms.ProductForm;
 import be.technifutur.product.models.forms.StockForm;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,6 @@
 package be.technifutur.product.controllers;
 
 import be.technifutur.product.business.services.StockService;
-import be.technifutur.product.models.dto.ProductDTO;
 import be.technifutur.product.models.dto.StockDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
