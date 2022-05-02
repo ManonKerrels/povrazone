@@ -25,7 +25,7 @@ public class MessageController {
 
     @GetMapping
     public void askForMessage(@RequestParam String message) {
-        ResponseEntity<Object> response = restTemplate.postForEntity("http://marie:8082/message?message=send_this", null, Object.class);
+        ResponseEntity<Object> response = restTemplate.postForEntity("http://product:8082/message?message=send_this", null, Object.class);
     }
 
 }
