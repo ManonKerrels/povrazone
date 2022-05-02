@@ -8,7 +8,6 @@ import be.technifutur.client.repos.ProductRepository;
 import be.technifutur.client.services.ProductService;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -22,12 +21,6 @@ public class ProductServiceImpl implements ProductService
     }
 
     @Override
-    public Optional<Product> getOneByUUID(UUID ref)
-    {
-        return repo.findAll().stream().filter((p) -> p.getReference() == ref).findFirst();
-    }
-
-    @Override
     public ProductDTO insert(ProductForm form)
     {
         return ProductDTO.of(repo.save(form.toProduct()));
@@ -36,7 +29,7 @@ public class ProductServiceImpl implements ProductService
     @Override
     public ProductDTO updateByUUID(UUID ref, ProductForm form)
     {
-        Product p = getOneByUUID(ref).orElseThrow(() -> new UUIDNotFoundException(ref));
+        Product p = repo.findByReference(ref).orElseThrow(() -> new UUIDNotFoundException(ref));
 
         p.setName(form.getName());
 
@@ -46,7 +39,7 @@ public class ProductServiceImpl implements ProductService
     @Override
     public ProductDTO deleteByUUID(UUID ref)
     {
-        Product p = getOneByUUID(ref).orElseThrow(() -> new UUIDNotFoundException(ref));
+        Product p = repo.findByReference(ref).orElseThrow(() -> new UUIDNotFoundException(ref));
 
         repo.deleteById(p.getId());
 
