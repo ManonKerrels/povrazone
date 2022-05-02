@@ -23,6 +23,24 @@ public class ClientDTO implements Serializable
     private final List<ProductDto> favorites;
     private final List<CartItemDto> cart;
 
+    public static ClientDTO of(Client c)
+    {
+        if(c == null) return null;
+
+        return new ClientDTO(
+                c.getId(),
+                c.getFirstName(),
+                c.getLastName(),
+                c.getUsername(),
+                c.getPassword(),
+                c.getMail(),
+                c.getAddress(),
+                c.getReference(),
+                c.getFavorites() == null ? null : c.getFavorites().stream().map(ProductDto::of).toList(),
+                c.getCart() == null ? null : c.getCart().stream().map(CartItemDto::of).toList()
+        );
+    }
+
     @Data
     public static class ProductDto implements Serializable
     {
@@ -63,23 +81,5 @@ public class ClientDTO implements Serializable
 
             return new CartItemDto(ProductDto.of(ci.getProduct()), ci.getQuantity());
         }
-    }
-
-    public static ClientDTO of(Client c)
-    {
-        if(c == null) return null;
-
-        return new ClientDTO(
-                c.getId(),
-                c.getFirstName(),
-                c.getLastName(),
-                c.getUsername(),
-                c.getPassword(),
-                c.getMail(),
-                c.getAddress(),
-                c.getReference(),
-                c.getFavorites() == null ? null : c.getFavorites().stream().map(ProductDto::of).toList(),
-                c.getCart() == null ? null : c.getCart().stream().map(CartItemDto::of).toList()
-        );
     }
 }
