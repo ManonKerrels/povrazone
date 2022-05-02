@@ -1,4 +1,4 @@
-package be.technifutur.stock.metier.service;
+package be.technifutur.stock.metier.service.stock;
 
 import be.technifutur.stock.models.dtos.StockDTO;
 import be.technifutur.stock.models.forms.StockForm;

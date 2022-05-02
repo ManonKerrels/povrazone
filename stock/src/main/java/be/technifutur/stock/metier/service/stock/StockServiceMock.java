@@ -1,11 +1,12 @@
-package be.technifutur.stock.metier.service;
+package be.technifutur.stock.metier.service.stock;
 
+import be.technifutur.stock.metier.service.stock.StockService;
 import be.technifutur.stock.models.dtos.StockDTO;
 import be.technifutur.stock.models.forms.StockForm;
 
 import java.util.List;
 
-public class StockServiceMock implements StockService{
+public class StockServiceMock implements StockService {
     @Override
     public StockDTO getOne(Long id) { return null; }
 

@@ -21,20 +21,6 @@ public class StockDTO {
     private String nameProduct;
     private List<DeliveryDTO> deliveries;
 
-//    @Data
-//    @AllArgsConstructor
-//    public static class Product_stockDTO{
-//        private Long id;
-//        private UUID reference;
-//
-//        public static Product_stockDTO of(Product_stock entity){
-//            if (entity == null){
-//                return null;
-//            }
-//            return new Product_stockDTO(entity.getId(), entity.getReference());
-//        }
-//    }
-
     @Data
     @AllArgsConstructor
     public static class DeliveryDTO {

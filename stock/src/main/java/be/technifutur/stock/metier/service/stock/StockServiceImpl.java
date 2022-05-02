@@ -1,7 +1,8 @@
-package be.technifutur.stock.metier.service;
+package be.technifutur.stock.metier.service.stock;
 
 import be.technifutur.stock.exceptions.ElementNotFoundException;
 import be.technifutur.stock.metier.mapper.StockMapper;
+import be.technifutur.stock.metier.service.stock.StockService;
 import be.technifutur.stock.models.dtos.StockDTO;
 import be.technifutur.stock.models.entities.Stock;
 import be.technifutur.stock.models.forms.StockForm;
@@ -15,7 +16,7 @@ import java.util.UUID;
 
 @Service
 @Transactional
-public class StockServiceImpl implements StockService{
+public class StockServiceImpl implements StockService {
 
     private final StockRepository repository;
     private final StockMapper mapper;

@@ -1,7 +1,9 @@
 package be.technifutur.stock.rabbit;
 
+import org.slf4j.Logger;
 import org.springframework.beans.factory.InitializingBean;
-
+import org.springframework.stereotype.Component;
+//
 //@Component
 //public class MessageSender implements InitializingBean {
 //
@@ -14,7 +16,7 @@ import org.springframework.beans.factory.InitializingBean;
 //
 //    public void send(Object message){
 //        String exchange = "direct.messages";
-//        String key = "marie";
+//        String key = "product";
 //        logger.info("RABBIT SEND - " + exchange + "->" + key + " : " + message );
 //        template.convertAndSend(exchange, key, message);
 //    }
