@@ -1,7 +1,8 @@
 package be.technifutur.stock.config;
 
-import lombok.Value;
+//import be.technifutur.stock.interceptors.LogInterceptor;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,12 +32,12 @@ import java.util.Queue;
 //    public static class RabbitConfig {
 //
 //        @Bean("publish")
-//        public Queue marieQueue(@Value("${rabbitmq.publish-to}") String queueName) {
+//        public Queue productQueue(@Value("${rabbitmq.publish-to}") String queueName) {
 //            return new Queue(queueName, true);
 //        }
 //
 //        @Bean("consume")
-//        public Queue lucQueue(@Value("${rabbitmq.listen-to}") String queueName) {
+//        public Queue stockQueue(@Value("${rabbitmq.listen-to}") String queueName) {
 //            return new Queue(queueName);
 //        }
 //
@@ -50,7 +51,7 @@ import java.util.Queue;
 //            return BindingBuilder
 //                    .bind(q)
 //                    .to(e)
-//                    .with("marie");
+//                    .with("product");
 //        }
 //
 //        @Bean
