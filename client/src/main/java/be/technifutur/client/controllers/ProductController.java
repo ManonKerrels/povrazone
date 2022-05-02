@@ -3,10 +3,7 @@ package be.technifutur.client.controllers;
 import be.technifutur.client.models.dtos.ProductDTO;
 import be.technifutur.client.models.forms.ProductForm;
 import be.technifutur.client.services.ProductService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/product")
@@ -20,19 +17,19 @@ public class ProductController
     }
 
 
-    @GetMapping
+    @PostMapping
     public ProductDTO insert(@RequestBody ProductForm form)
     {
         return service.insert(form);
     }
 
-    @GetMapping
+    @DeleteMapping
     public ProductDTO delete(@RequestBody ProductForm form)
     {
         return service.deleteByUUID(form.getReference());
     }
 
-    @GetMapping
+    @PutMapping
     public ProductDTO update(@RequestBody ProductForm form)
     {
         return service.updateByUUID(form.getReference(), form);

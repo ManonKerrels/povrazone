@@ -9,7 +9,6 @@ import java.util.UUID;
 
 public interface ProductService
 {
-    Optional<Product> getOneByUUID(UUID ref);
     ProductDTO insert(ProductForm form);
     ProductDTO updateByUUID(UUID ref, ProductForm form);
     ProductDTO deleteByUUID(UUID ref);
