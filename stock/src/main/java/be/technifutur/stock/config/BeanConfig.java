@@ -1,6 +1,10 @@
 package be.technifutur.stock.config;
 
-//import be.technifutur.stock.interceptors.LogInterceptor;
+import be.technifutur.stock.interceptors.LogInterceptor;
+import com.rabbitmq.client.ConnectionFactory;
+import org.springframework.amqp.core.BindingBuilder;
+import org.springframework.amqp.core.DirectExchange;
+import org.springframework.amqp.rabbit.core.RabbitAdmin;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;

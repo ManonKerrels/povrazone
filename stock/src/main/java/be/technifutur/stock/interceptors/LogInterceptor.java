@@ -10,14 +10,14 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
-//@Component
-//public class LogInterceptor implements ClientHttpRequestInterceptor {
-//
-//    Logger log = LoggerFactory.getLogger(LogInterceptor.class);
-//
-//    @Override
-//    public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution) throws IOException {
-//        log.info( String.format("%s - %s", request.getMethod(), request.getURI()) );
-//        return execution.execute(request,body);
-//    }
-//}
+@Component
+public class LogInterceptor implements ClientHttpRequestInterceptor {
+
+    Logger log = LoggerFactory.getLogger(LogInterceptor.class);
+
+    @Override
+    public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution) throws IOException {
+        log.info( String.format("%s - %s", request.getMethod(), request.getURI()) );
+        return execution.execute(request,body);
+    }
+}
