@@ -37,7 +37,7 @@ public class OrderController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<OrderDTO> delete(@PathVariable Long id, @RequestBody OrderForm form){
+    public ResponseEntity<OrderDTO> delete(@PathVariable Long id){
         return ResponseEntity.ok(service.delete(id));
     }
 }

@@ -5,16 +5,19 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import be.technifutur.order.models.dtos.OrderDTO;
 import be.technifutur.order.models.entities.Order;
 import be.technifutur.order.models.entities.OrderProduct;
 import be.technifutur.order.models.entities.OrderProductKey;
 import be.technifutur.order.models.forms.OrderForm;
+import be.technifutur.order.models.forms.ProductForm;
 import be.technifutur.order.repositories.*;
 import be.technifutur.order.services.OrderService;
 
 @Service
+@Transactional
 public class OrderServiceImpl implements OrderService {
 
     @Autowired
@@ -50,17 +53,23 @@ public class OrderServiceImpl implements OrderService {
         
         order = orderRepository.save(order);
 
-        OrderProduct orderProduct = OrderProduct.builder()
+        OrderProduct orderProduct = null;
+        for (ProductForm proForm : form.getProducts()) {
+            orderProduct = OrderProduct.builder()
             .id(new OrderProductKey())
             .order(order)
-            .quantity(form.getQuantity())
-            .shippingDate(form.getShippingDate())
+            .quantity(proForm.getQuantity())
+            .shippingDate(proForm.getShippingDate())
             .build();
-        if(form.getProductId() != null){
-            orderProduct.setProduct(productRepos.findById(form.getProductId()).orElseThrow());
-        }
+            if(proForm.getId() != null){
+                orderProduct.setProduct(productRepos.findById(proForm.getId()).orElseThrow());
+            }
 
-        orderProductRepos.save(orderProduct);
+            orderProductRepos.save(orderProduct);
+        }
+        
+
+        
         return OrderDTO.of(order);
     }
 
@@ -71,14 +80,38 @@ public class OrderServiceImpl implements OrderService {
         order.setPriceTotal(form.getPriceTotal());
         //order.setOrderProducts(form.getOrderProducts());
 
-        return OrderDTO.of(orderRepository.save(order));
+        orderRepository.save(order);
+
+        for (OrderProduct orderProduct : order.getOrderProducts()) {
+            orderProductRepos.deleteByIdIdOrderAndIdIdProduct(orderProduct.getId().getIdOrder(),orderProduct.getId().getIdProduct());
+        }
+
+        OrderProduct orderProduct = null;
+        for (ProductForm proForm : form.getProducts()) {
+            orderProduct = OrderProduct.builder()
+            .id(new OrderProductKey())
+            .order(order)
+            .quantity(proForm.getQuantity())
+            .shippingDate(proForm.getShippingDate())
+            .build();
+            if(proForm.getId() != null){
+                orderProduct.setProduct(productRepos.findById(proForm.getId()).orElseThrow());
+            }
+
+            orderProductRepos.save(orderProduct);
+        }
+
+        return OrderDTO.of(order);
     }
 
     @Override
     public OrderDTO delete(Long id) {
-        OrderDTO order = getOne(id);
+        Order order = orderRepository.findById(id).orElseThrow();
+        for (OrderProduct orderProduct : order.getOrderProducts()) {
+            orderProductRepos.deleteByIdIdOrderAndIdIdProduct(orderProduct.getId().getIdOrder(),orderProduct.getId().getIdProduct());
+        }
         orderRepository.deleteById(id);
-        return order;
+        return OrderDTO.of(order);
     }
     
 }
