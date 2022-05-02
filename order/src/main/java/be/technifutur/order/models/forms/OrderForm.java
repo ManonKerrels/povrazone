@@ -2,6 +2,7 @@ package be.technifutur.order.models.forms;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -17,8 +18,6 @@ public class OrderForm {
     private double priceTotal;
     //private UUID referenceOrder;
     //private Set<OrderProduct> orderProducts;
-    private Long productId;
-    private int quantity;
-    private LocalDateTime shippingDate;
+    private List<ProductForm> products;
     private Long clientId;
 }

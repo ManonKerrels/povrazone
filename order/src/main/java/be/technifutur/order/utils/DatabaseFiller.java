@@ -34,6 +34,12 @@ public class DatabaseFiller implements InitializingBean {
             .build();
         productRepo.save(product);
 
+        product = Product.builder()
+        .name("Pommes")
+        .reference(UUID.randomUUID())
+        .build();
+        productRepo.save(product);
+
         Client client = Client.builder()
         .username("test")
         .reference("95.04.20-259.97")
