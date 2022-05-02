@@ -16,7 +16,8 @@ import lombok.*;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class OrderDTO implements Serializable {
     private final Long id;
-    private final LocalDateTime shippingDate;
+    private final LocalDateTime orderDate;
+    private final double priceTotal;
     private final UUID referenceOrder;
     private final Set<OrderProductDTO> orderProducts;
     private final ClientDTO client;
@@ -27,7 +28,8 @@ public class OrderDTO implements Serializable {
 
         return new OrderDTO(
             order.getId(),
-            order.getShippingDate(),
+            order.getOrderDate(),
+            order.getPriceTotal(),
             order.getReferenceOrder(),
             order.getOrderProducts() == null ? null : order.getOrderProducts().stream()
                         .map(OrderProductDTO::of)
@@ -40,7 +42,7 @@ public class OrderDTO implements Serializable {
     public static class OrderProductDTO{
        // private final OrderDTO order;
         private final ProductDTO product;
-        private final LocalDateTime orderDate;
+        private final LocalDateTime shippingDate;
         private final int quantity;
 
         public static OrderProductDTO of(OrderProduct orderProduct){
@@ -50,7 +52,7 @@ public class OrderDTO implements Serializable {
             return new OrderProductDTO(
                 //OrderDTO.of(orderProduct.getOrder()),
                 ProductDTO.of(orderProduct.getProduct()),
-                orderProduct.getOrderDate(),
+                orderProduct.getShippingDate(),
                 orderProduct.getQuantity()
             );
         }

@@ -12,6 +12,6 @@ import lombok.Setter;
 @Getter @Setter
 @EqualsAndHashCode
 public class OrderProductKey implements Serializable{
-    private long idOrder;
-    private long idProduct;
+    private Long idOrder;
+    private Long idProduct;
 }

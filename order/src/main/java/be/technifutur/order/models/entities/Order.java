@@ -6,10 +6,13 @@ import java.util.UUID;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import lombok.*;
 
 @Entity
-@Table(name = "order")
+@Builder
+@Table(name = "orders")
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -17,10 +20,12 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name = "shipping_date")
-    @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime shippingDate;
-    @Column(name="reference_order",unique = true)
+    @Column(name = "order_date")
+    private LocalDateTime orderDate;
+    @Column(name = "price_total")
+    private double priceTotal;
+
+    @Column(name="reference_order",updatable = false, nullable = false, unique = true)
     private UUID referenceOrder;
     @OneToMany(mappedBy = "order")
     Set<OrderProduct> orderProducts;

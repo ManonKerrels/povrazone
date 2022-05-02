@@ -23,7 +23,7 @@ public class Client {
     private String username;
     @Column(name = "address", nullable = false)
     private String address;
-    @Column(name = "reference_client", nullable = false, length = 20, unique = true)
+    @Column(name = "reference_client", updatable = false, nullable = false, length = 20, unique = true)
     private String reference;
     @OneToMany(mappedBy = "client")
     Set<Order> orders;

@@ -29,10 +29,8 @@ public class OrderProduct {
     @JoinColumn(name = "product_id")
     private Product product;
 
-    
-    @Column(name = "order_date")
-    @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime orderDate;
+    @Column(name = "shipping_date")
+    private LocalDateTime shippingDate;
 
     @Column(name = "quantity")
     private int quantity;
