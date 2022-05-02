@@ -2,11 +2,11 @@ package be.technifutur.stock.metier.service.stock;
 
 import be.technifutur.stock.exceptions.ElementNotFoundException;
 import be.technifutur.stock.metier.mapper.StockMapper;
-import be.technifutur.stock.metier.service.stock.StockService;
 import be.technifutur.stock.models.dtos.StockDTO;
 import be.technifutur.stock.models.entities.Stock;
 import be.technifutur.stock.models.forms.StockForm;
 import be.technifutur.stock.repositories.DeliveryRepository;
+import be.technifutur.stock.repositories.ProductRepository;
 import be.technifutur.stock.repositories.StockRepository;
 import org.springframework.stereotype.Service;
 
@@ -21,11 +21,13 @@ public class StockServiceImpl implements StockService {
     private final StockRepository repository;
     private final StockMapper mapper;
     private final DeliveryRepository deliveryRepository;
+    private final ProductRepository productRepository;
 
-    public StockServiceImpl(StockRepository repository, StockMapper mapper, DeliveryRepository deliveryRepository) {
+    public StockServiceImpl(StockRepository repository, StockMapper mapper, DeliveryRepository deliveryRepository, ProductRepository productRepository) {
         this.repository = repository;
         this.mapper = mapper;
         this.deliveryRepository = deliveryRepository;
+        this.productRepository = productRepository;
     }
 
 
@@ -49,7 +51,7 @@ public class StockServiceImpl implements StockService {
     public StockDTO insert(StockForm form) {
         Stock entity = mapper.formToEntity(form);
         entity.setReference(UUID.randomUUID());
-        entity.setReferenceProduct(UUID.randomUUID());
+        entity.setProduct(productRepository.findById(form.getProductId()).orElseThrow());
         entity = repository.save(entity);
         return mapper.entityToDTO(entity);
     }
@@ -59,9 +61,7 @@ public class StockServiceImpl implements StockService {
         Stock entity = repository.findById(id)
                 .orElseThrow(() -> new ElementNotFoundException(id, Stock.class));
         entity.setCurrentStock(form.getCurrentStock());
-        entity.getReference();
-        entity.getReferenceProduct();
-        entity.setNameProduct(form.getNameProduct());
+        entity.setProduct(productRepository.findById(form.getProductId()).orElseThrow());
         entity = repository.save(entity);
         return mapper.entityToDTO(entity);
     }

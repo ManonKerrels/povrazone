@@ -1,8 +1,10 @@
 package be.technifutur.stock.controllers;
 
 import be.technifutur.stock.exceptions.ElementNotFoundException;
+import be.technifutur.stock.exceptions.UUIDNotFoundException;
 import be.technifutur.stock.metier.service.product.ProductService;
 import be.technifutur.stock.models.dtos.ProductDTO;
+import be.technifutur.stock.models.dtos.StockDTO;
 import be.technifutur.stock.models.entities.Product;
 import be.technifutur.stock.models.forms.ProductForm;
 import org.springframework.http.HttpStatus;
@@ -28,11 +30,13 @@ public class ProductController {
     public List<ProductDTO> getAll(){ return service.getAll(); }
 
     @GetMapping("/{UUID}")
-    public ResponseEntity<Optional<Product>> getOne(@PathVariable UUID reference){
+    public ResponseEntity<ProductDTO> getOne(@PathVariable UUID reference){
         try {
-            Optional<Product> dto = service.getOneByUUID(reference);
-            return ResponseEntity.ok(service.getOneByUUID(reference));
-        } catch (ElementNotFoundException ex){
+            ProductDTO dto = service.getOneByUUID(reference);
+            return ResponseEntity.status(HttpStatus.OK)
+                    .header("from controller", "StockController")
+                    .body(service.getOneByUUID(reference));
+        } catch (UUIDNotFoundException ex){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }

@@ -1,6 +1,7 @@
 package be.technifutur.stock.models.dtos;
 
 import be.technifutur.stock.models.entities.Delivery;
+import be.technifutur.stock.models.entities.Product;
 import be.technifutur.stock.models.entities.Supplier;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,8 +19,16 @@ public class StockDTO {
     private int currentStock;
     private UUID reference;
     private UUID referenceProduct;
-    private String nameProduct;
+    private ProductDTO product;
     private List<DeliveryDTO> deliveries;
+
+    @Data
+    @AllArgsConstructor
+    public static class ProductDTO {
+        private Long id;
+        private String name;
+        private UUID reference;
+    }
 
     @Data
     @AllArgsConstructor

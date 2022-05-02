@@ -1,5 +1,6 @@
 package be.technifutur.stock.models.forms;
 
+import be.technifutur.stock.models.entities.Product;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,10 +15,8 @@ public class StockForm {
 
     private int currentStock;
     private UUID reference;
-    private UUID referenceProduct;
-    private String nameProduct;
+    private Long productId;
     private List<Delivery> deliveries;
-
 
 
     @Data

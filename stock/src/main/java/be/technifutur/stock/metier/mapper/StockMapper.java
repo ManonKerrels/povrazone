@@ -1,6 +1,7 @@
 package be.technifutur.stock.metier.mapper;
 
 import be.technifutur.stock.models.dtos.StockDTO;
+import be.technifutur.stock.models.entities.Product;
 import be.technifutur.stock.models.entities.Stock;
 import be.technifutur.stock.models.forms.StockForm;
 import org.springframework.stereotype.Service;
@@ -13,12 +14,14 @@ public class StockMapper {
             return null;
         }
 
+        Product productEntity = entity.getProduct();
+        StockDTO.ProductDTO product = productEntity == null ? null : new StockDTO.ProductDTO(productEntity.getId(), productEntity.getName(), productEntity.getReference());
+
         return StockDTO.builder()
                 .id(entity.getId())
                 .currentStock(entity.getCurrentStock())
                 .reference(entity.getReference())
-                .referenceProduct(entity.getReferenceProduct())
-                .nameProduct(entity.getNameProduct())
+                .product(product)
                 .deliveries(entity.getDeliveries() == null ? null : entity.getDeliveries().stream().map(StockDTO.DeliveryDTO::of).toList())
                 .build();
     }
@@ -32,7 +35,6 @@ public class StockMapper {
                 .currentStock(form.getCurrentStock())
 //                .reference(form.getReference())
 //                .referenceProduct(form.getReferenceProduct())
-                .nameProduct(form.getNameProduct())
                 .build();
 
     }

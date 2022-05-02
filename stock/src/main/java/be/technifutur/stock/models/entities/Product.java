@@ -24,4 +24,8 @@ public class Product {
 
     @Column(nullable = false, name = "product_reference", unique = true)
     private UUID reference;
+
+    @OneToOne
+    @JoinColumn
+    private Stock stock;
 }

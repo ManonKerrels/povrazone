@@ -28,11 +28,8 @@ public class Stock {
     @Column(nullable = false, unique = true)
     private UUID reference;
 
-    @Column(name = "reference_product")
-    private UUID referenceProduct;
-
-    @Column(name = "name_product")
-    private String nameProduct;
+    @OneToOne(mappedBy = "stock", cascade = CascadeType.PERSIST)
+    private Product product;
 
     @OneToMany(mappedBy = "stock", cascade = CascadeType.PERSIST)
     private List<Delivery> deliveries = new ArrayList<>();

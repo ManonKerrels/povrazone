@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -27,8 +26,11 @@ public class ProductServiceImpl implements ProductService{
 
 
     @Override
-    public Optional<Product> getOneByUUID(UUID reference) {
-        return repository.findAll().stream().filter((p) -> p.getReference() == reference).findFirst();
+    public ProductDTO getOneByUUID(UUID reference) {
+        ProductDTO dto = repository.findByReference(reference)
+                .map(mapper::entityToDTO)
+                .orElseThrow(() -> new UUIDNotFoundException(reference));
+        return dto;
     }
 
     @Override
@@ -41,12 +43,17 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public ProductDTO insert(ProductForm form) {
-        return ProductDTO.of(repository.save(form.toProduct()));
+        Product entity = mapper.formToEntity(form);
+        entity.setName(form.getName());
+        entity.setReference(form.getReference());
+        entity = repository.save(entity);
+        return mapper.entityToDTO(entity);
     }
 
     @Override
     public ProductDTO updateByUUID(UUID reference, ProductForm form) {
-        Product entity = getOneByUUID(reference).orElseThrow(() -> new UUIDNotFoundException(reference));
+        Product entity = (Product) repository.findByReference(reference)
+                .orElseThrow(() -> new UUIDNotFoundException(reference));
         entity.setName(form.getName());
         entity.setReference(form.getReference());
         entity = repository.save(entity);
@@ -55,8 +62,8 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public ProductDTO deleteByUUID(UUID reference) {
-        Product entity = getOneByUUID(reference).orElseThrow(() -> new UUIDNotFoundException(reference));
-        repository.deleteById(entity.getId());
-        return ProductDTO.of(entity);
+        ProductDTO dto = getOneByUUID(reference);
+        repository.deleteByReference(dto);
+        return dto;
     }
 }
