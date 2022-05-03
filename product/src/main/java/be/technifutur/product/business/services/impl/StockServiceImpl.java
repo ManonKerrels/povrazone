@@ -9,6 +9,7 @@ import be.technifutur.product.repositories.StockRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class StockServiceImpl implements StockService {
@@ -22,10 +23,10 @@ public class StockServiceImpl implements StockService {
     }
 
     @Override
-    public StockDTO getOne(Long id) {
-        return repository.findById(id)
+    public StockDTO getOneByUUID (UUID reference) {
+        return repository.findByReference(reference)
                 .map(mapper::entityToDTO)
-                .orElseThrow(() -> new ElementNotFoundException(id, ProductDTO.class));
+                .orElseThrow(() -> new ElementNotFoundException(reference, ProductDTO.class));
     }
 
     @Override
