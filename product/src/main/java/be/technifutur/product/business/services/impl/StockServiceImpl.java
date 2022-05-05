@@ -24,9 +24,10 @@ public class StockServiceImpl implements StockService {
 
     @Override
     public StockDTO getOneByUUID (UUID reference) {
-        return repository.findByReference(reference)
+        return repository.findAll().stream()
+                .filter(p -> p.getReference().equals(reference))
                 .map(mapper::entityToDTO)
-                .orElseThrow(() -> new ElementNotFoundException(reference, ProductDTO.class));
+                .findFirst().orElseThrow();
     }
 
     @Override
