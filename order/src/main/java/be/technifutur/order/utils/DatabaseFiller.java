@@ -43,7 +43,6 @@ public class DatabaseFiller implements InitializingBean {
         Client client = Client.builder()
         .username("test")
         .reference("95.04.20-259.97")
-        .address("rue test")
         .build();
         clientRepo.save(client);
 

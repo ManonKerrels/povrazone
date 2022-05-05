@@ -22,16 +22,10 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, name = "product_id")
-    private long id;
+    private Long id;
 
     @Column(nullable = false, name = "product_name", length = 50)
     private String name;
-
-    @Column(name = "product_dispo")
-    private boolean dispo;
-
-    @Column(nullable = false, name = "product_price")
-    private double price;
 
     @Column(nullable = false, unique = true, name = "product_reference")
     private UUID reference;

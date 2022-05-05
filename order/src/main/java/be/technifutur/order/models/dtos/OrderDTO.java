@@ -61,8 +61,6 @@ public class OrderDTO implements Serializable {
     @Data
     public static class ProductDTO{
         private final String name;
-        private final boolean dispo;
-        private final double price;
         private final UUID reference;
         public static ProductDTO of(Product product){
             if( product == null )
@@ -70,8 +68,6 @@ public class OrderDTO implements Serializable {
     
             return new ProductDTO(
                 product.getName(),
-                product.isDispo(),
-                product.getPrice(),
                 product.getReference()
             );
         }

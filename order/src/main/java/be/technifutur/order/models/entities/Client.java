@@ -21,8 +21,6 @@ public class Client {
     private Long id;
     @Column(name = "username", nullable = false, length = 50, unique = true)
     private String username;
-    @Column(name = "address", nullable = false)
-    private String address;
     @Column(name = "reference_client", updatable = false, nullable = false, length = 20, unique = true)
     private String reference;
     @OneToMany(mappedBy = "client")

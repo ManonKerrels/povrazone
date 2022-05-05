@@ -24,7 +24,6 @@ public class Order {
     private LocalDateTime orderDate;
     @Column(name = "price_total")
     private double priceTotal;
-
     @Column(name="reference_order",updatable = false, nullable = false, unique = true)
     private UUID referenceOrder;
     @OneToMany(mappedBy = "order")
