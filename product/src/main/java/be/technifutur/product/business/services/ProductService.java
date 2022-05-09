@@ -11,7 +11,7 @@ import java.util.UUID;
 public interface ProductService {
 
     // CREATE
-    public ProductDTO insert(ProductForm form);
+    public void insert(ProductForm form);
 
     // READ
     public ProductDTO getOne(Long id);

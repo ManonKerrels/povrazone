@@ -2,13 +2,16 @@ package be.technifutur.product.business.services.impl;
 
 import be.technifutur.product.business.mappers.ProductMapper;
 import be.technifutur.product.business.services.ProductService;
+import be.technifutur.product.communication.MessageSender;
 import be.technifutur.product.exceptions.ElementNotFoundException;
 import be.technifutur.product.models.dto.ProductDTO;
 import be.technifutur.product.models.entities.Product;
 import be.technifutur.product.models.entities.Stock;
 import be.technifutur.product.models.forms.ProductForm;
 import be.technifutur.product.repositories.ProductRepository;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.Locale;
@@ -19,18 +22,26 @@ public class ProductServiceImpl implements ProductService {
 
     private final ProductMapper mapper;
     private final ProductRepository repository;
+    private final MessageSender sender;
+    private final RestTemplate template;
 
-    public ProductServiceImpl(ProductMapper mapper, ProductRepository repository) {
+    public ProductServiceImpl(ProductMapper mapper, ProductRepository repository, MessageSender sender, RestTemplate template) {
         this.mapper = mapper;
         this.repository = repository;
+        this.sender = sender;
+        this.template = template;
     }
 
 
     @Override
-    public ProductDTO insert(ProductForm form) {
-        Product entity = mapper.formToEntity(form);
-        entity = repository.save(entity);
-        return mapper.entityToDTO(entity);
+    public void insert(ProductForm form) {
+        try {
+            Product entity = mapper.formToEntity(form);
+            sender.sendProduct(entity);
+            repository.save(entity);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -57,10 +68,16 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductDTO getOneByUUID(UUID ref) {
-        return repository.findAll().stream()
+        Product product =  repository.findAll().stream()
                 .filter(p -> p.getReference().equals(ref))
-                .map(mapper::entityToDTO)
                 .findFirst().orElseThrow();
+        try{
+            sender.sendProduct(product);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+
+        return mapper.entityToDTO(product);
         }
 
     @Override
@@ -74,6 +91,12 @@ public class ProductServiceImpl implements ProductService {
         entity.setCategory(form.getCategory());
 
         entity = repository.save(entity);
+        
+        try{
+            sender.sendProduct(entity);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
 
         return mapper.entityToDTO(entity);
     }
