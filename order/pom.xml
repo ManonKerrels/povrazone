@@ -13,4 +13,15 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>order</name>
 	<description>Demo project for Spring Boot</description>
+	<build>
+        <finalName>${project.name}</finalName>
+  	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>be.technifutur</groupId>
+			<artifactId>povrazone_order</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
 </project>
