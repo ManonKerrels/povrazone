@@ -1,8 +1,12 @@
 package be.technifutur.stock.rabbit;
 
+import be.technifutur.stock.models.dtos.StockDTO;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.amqp.core.Message;
+import org.springframework.amqp.core.MessageBuilder;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Component;
@@ -19,8 +23,12 @@ public class RabbitSender implements InitializingBean {
         this.mapper = mapper;
     }
 
-    public void sendStockToProduct(String json){
-        rabbitTemplate.convertAndSend("direct.povrazone", "product", json);
+    public void sendStockToProduct(StockDTO dto) throws JsonProcessingException {
+        String stockJson = mapper.writeValueAsString(dto);
+        Message m = MessageBuilder.withBody(stockJson.getBytes())
+                        .setContentType("application/json")
+                        .build();
+        rabbitTemplate.send("direct.povrazone", "stock", m);
     }
 
     @Override
