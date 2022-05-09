@@ -91,7 +91,7 @@ public class ProductServiceImpl implements ProductService {
         entity.setCategory(form.getCategory());
 
         entity = repository.save(entity);
-        
+
         try{
             sender.sendProduct(entity);
         } catch (JsonProcessingException e) {
