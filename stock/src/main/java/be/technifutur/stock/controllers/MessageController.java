@@ -1,7 +1,6 @@
 package be.technifutur.stock.controllers;
 
 //import be.technifutur.stock.rabbit.MessageSender;
-import be.technifutur.stock.rabbit.MessageSender;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
