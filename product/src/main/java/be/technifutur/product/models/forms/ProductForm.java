@@ -14,4 +14,5 @@ public class ProductForm {
     private double price;
     private UUID reference;
     private Category category;
+    private Boolean availability;
 }

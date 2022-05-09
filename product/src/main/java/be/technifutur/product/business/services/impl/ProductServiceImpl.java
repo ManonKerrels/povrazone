@@ -5,12 +5,14 @@ import be.technifutur.product.business.services.ProductService;
 import be.technifutur.product.exceptions.ElementNotFoundException;
 import be.technifutur.product.models.dto.ProductDTO;
 import be.technifutur.product.models.entities.Product;
+import be.technifutur.product.models.entities.Stock;
 import be.technifutur.product.models.forms.ProductForm;
 import be.technifutur.product.repositories.ProductRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.UUID;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -54,6 +56,14 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public ProductDTO getOneByUUID(UUID ref) {
+        return repository.findAll().stream()
+                .filter(p -> p.getReference().equals(ref))
+                .map(mapper::entityToDTO)
+                .findFirst().orElseThrow();
+        }
+
+    @Override
     public ProductDTO update(Long id, ProductForm form) {
         Product entity = repository.findById(id)
                 .orElseThrow( () -> new ElementNotFoundException(id, ProductDTO.class));
@@ -66,6 +76,16 @@ public class ProductServiceImpl implements ProductService {
         entity = repository.save(entity);
 
         return mapper.entityToDTO(entity);
+    }
+
+    @Override
+    public void setAvailability(Stock stock) {
+
+        Product entity = repository.findAll().stream()
+                .filter(p -> p.getReference().equals(stock.getReference()))
+                .findFirst().orElseThrow();
+
+        entity.setAvailability(stock.getCurrentStock() > 0);
     }
 
     @Override

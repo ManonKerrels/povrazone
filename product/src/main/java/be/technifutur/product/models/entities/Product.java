@@ -28,16 +28,13 @@ public class Product {
     @Column(nullable = false, name = "product_price")
     private double price;
 
-//    @GeneratedValue(generator = "UUID")
-//    @GenericGenerator(
-//            name = "UUID",
-//            strategy = "org.hibernate.id.UUIDGenerator"
-//    )
     @Column(nullable = false, name = "product_reference", unique = true)
     private UUID reference;
 
     @ManyToOne
-    private Category category ;
+    private Category category;
 
+    @Column(name = "product_availability")
+    private Boolean availability;
 
 }

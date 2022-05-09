@@ -18,14 +18,14 @@ public class CategoryController {
         this.service = service;
     }
 
-    // GET - http://localhost:8080/category
+    // GET - http://localhost:8084/category
     @GetMapping
     public List<CategoryDTO> getAll(){
         return service.getAll();
     }
 
 
-    // GET - http://localhost:8080/category/id
+    // GET - http://localhost:8084/category/id
     @GetMapping("/{id}")
     public ResponseEntity<CategoryDTO> getOne (@PathVariable Long id){
         return ResponseEntity.ok(service.getOne(id));
@@ -33,21 +33,21 @@ public class CategoryController {
 
 
 
-    // DELETE -  http://localhost:8080/category/id
+    // DELETE -  http://localhost:8084/category/id
     @DeleteMapping("/{id}")
     public ResponseEntity<CategoryDTO> delete(@PathVariable Long id){
         return ResponseEntity.ok(service.delete(id));
     }
 
 
-    // POST -http://localhost:8080/category/add
+    // POST -http://localhost:8084/category/add
     @PostMapping("/add")
     public ResponseEntity<CategoryDTO> insert( @RequestBody CategoryForm form){
         return ResponseEntity.ok( service.insert(form)) ;
     }
 
 
-    // PUT - http://localhost:8080/category/id
+    // PUT - http://localhost:8084/category/id
     @PutMapping("/{id}")
     public ResponseEntity<CategoryDTO> update (@PathVariable Long id, @RequestBody CategoryForm form) {
         return ResponseEntity.ok(service.update(id, form));

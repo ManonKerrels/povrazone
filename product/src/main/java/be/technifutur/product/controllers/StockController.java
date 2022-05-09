@@ -18,7 +18,7 @@ public class StockController {
         this.service = service;
     }
 
-    // GET - http://localhost:8080/stock
+    // GET - http://localhost:8084/stock
     @GetMapping
     public List<StockDTO> getAll(){
         return service.getAll();

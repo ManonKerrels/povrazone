@@ -18,42 +18,42 @@ public class ProductController {
         this.service = service;
     }
 
-    // GET - http://localhost:8080/product
+    // GET - http://localhost:8084/product
     @GetMapping
     public List<ProductDTO> getAll(){
         return service.getAll();
     }
 
 
-    // GET - http://localhost:8080/product/id
+    // GET - http://localhost:8084/product/id
     @GetMapping("/{id}")
     public ResponseEntity<ProductDTO> getOne (@PathVariable Long id){
         return ResponseEntity.ok(service.getOne(id));
     }
 
 
-    // GET - http://localhost:8080/product/searchByName/name
+    // GET - http://localhost:8084/product/searchByName/name
     @GetMapping("/searchByName/{name}")
     public List<ProductDTO> getByName (@PathVariable String name){
         return service.getByName(name);
     }
 
 
-    // DELETE -  http://localhost:8080/product/id
+    // DELETE -  http://localhost:8084/product/id
     @DeleteMapping("/{id}")
     public ResponseEntity<ProductDTO> delete(@PathVariable Long id){
         return ResponseEntity.ok(service.delete(id));
     }
 
 
-    // POST -http://localhost:8080/product/add
+    // POST -http://localhost:8084/product/add
     @PostMapping("/add")
     public ResponseEntity<ProductDTO> insert( @RequestBody ProductForm form){
         return ResponseEntity.ok( service.insert(form)) ;
     }
 
 
-    // PUT - http://localhost:8080/product/id
+    // PUT - http://localhost:8084/product/id
     @PutMapping("/{id}")
     public ResponseEntity<ProductDTO> update (@PathVariable Long id, @RequestBody ProductForm form) {
         return ResponseEntity.ok(service.update(id, form));

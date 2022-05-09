@@ -15,6 +15,7 @@ public class ProductDTO {
     private double price;
     private UUID reference;
     private CategoryDTO category;
+    private Boolean availability;
 
     @AllArgsConstructor
     @Data
