@@ -7,14 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import be.technifutur.order.models.dtos.OrderDTO;
+import be.technifutur.models.dtos.OrderDTO;
 import be.technifutur.order.models.entities.Order;
 import be.technifutur.order.models.entities.OrderProduct;
 import be.technifutur.order.models.entities.OrderProductKey;
-import be.technifutur.order.models.forms.OrderForm;
-import be.technifutur.order.models.forms.ProductForm;
+import be.technifutur.models.forms.OrderForm;
+import be.technifutur.models.forms.ProductForm;
 import be.technifutur.order.repositories.*;
 import be.technifutur.order.services.OrderService;
+import be.technifutur.order.services.mapper.OrderMapper;
 
 @Service
 @Transactional
@@ -28,25 +29,28 @@ public class OrderServiceImpl implements OrderService {
     private ProductRepository productRepos;
     @Autowired
     private OrderProductRepository orderProductRepos;
+    @Autowired
+    private OrderMapper mapper;
 
     @Override
     public OrderDTO getOne(Long id) {
-        return orderRepository.findById(id).map(OrderDTO::of).orElseThrow();
+        return orderRepository.findById(id).map(mapper::toDto).orElseThrow();
     }
 
     @Override
     public List<OrderDTO> getAll() {
-        return orderRepository.findAll().stream().map(OrderDTO::of).toList();
+        return orderRepository.findAll().stream().map(mapper::toDto).toList();
     }
 
     @Override
     public OrderDTO insert(OrderForm form) {
-        Order order = Order.builder()
-            .referenceOrder(UUID.randomUUID())
-            .orderDate(form.getOrderDate())
-            .priceTotal(form.getPriceTotal())
-            //.orderProducts(form.getOrderProducts())
-            .build();
+        // Order order = Order.builder()
+        //     .referenceOrder(UUID.randomUUID())
+        //     .orderDate(form.getOrderDate())
+        //     .priceTotal(form.getPriceTotal())
+        //     //.orderProducts(form.getOrderProducts())
+        //     .build();
+        Order order = mapper.toEntity(form);
         if(form.getClientId() != null){
             order.setClient(clientRepository.findById(form.getClientId()).orElseThrow());
         }
@@ -70,7 +74,8 @@ public class OrderServiceImpl implements OrderService {
         
 
         
-        return OrderDTO.of(order);
+        //return OrderDTO.of(order);
+        return mapper.toDto(order);
     }
 
     @Override
@@ -101,7 +106,8 @@ public class OrderServiceImpl implements OrderService {
             orderProductRepos.save(orderProduct);
         }
 
-        return OrderDTO.of(order);
+        //return OrderDTO.of(order);
+        return mapper.toDto(order);
     }
 
     @Override
@@ -111,7 +117,8 @@ public class OrderServiceImpl implements OrderService {
             orderProductRepos.deleteByIdIdOrderAndIdIdProduct(orderProduct.getId().getIdOrder(),orderProduct.getId().getIdProduct());
         }
         orderRepository.deleteById(id);
-        return OrderDTO.of(order);
+        // return OrderDTO.of(order);
+        return mapper.toDto(order);
     }
     
 }

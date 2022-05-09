@@ -8,11 +8,14 @@
 		<artifactId>povrazone</artifactId>
 		<version>1.0-SNAPSHOT</version>
 	</parent>
-	
+
 	<groupId>be.technifutur</groupId>
 	<artifactId>apigateway</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>apigateway</name>
 	<description>Demo project for Spring Boot</description>
 
+	<build>
+        <finalName>${project.name}</finalName>
+  	</build>
 </project>

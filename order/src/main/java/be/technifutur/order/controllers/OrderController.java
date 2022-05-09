@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import be.technifutur.order.models.dtos.OrderDTO;
-import be.technifutur.order.models.forms.OrderForm;
+import be.technifutur.models.dtos.OrderDTO;
+import be.technifutur.models.forms.OrderForm;
 import be.technifutur.order.services.OrderService;
 
 @RestController

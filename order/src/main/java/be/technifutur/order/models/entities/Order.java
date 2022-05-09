@@ -9,6 +9,7 @@ import javax.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import lombok.*;
+import lombok.Builder.Default;
 
 @Entity
 @Builder
@@ -25,9 +26,12 @@ public class Order {
     @Column(name = "price_total")
     private double priceTotal;
     @Column(name="reference_order",updatable = false, nullable = false, unique = true)
-    private UUID referenceOrder;
+    @Default
+    private UUID referenceOrder = UUID.randomUUID();
     @OneToMany(mappedBy = "order")
     Set<OrderProduct> orderProducts;
     @ManyToOne
     private Client client;
+
+
 }

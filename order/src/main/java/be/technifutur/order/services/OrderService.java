@@ -2,8 +2,8 @@ package be.technifutur.order.services;
 
 import java.util.List;
 
-import be.technifutur.order.models.dtos.OrderDTO;
-import be.technifutur.order.models.forms.OrderForm;
+import be.technifutur.models.dtos.OrderDTO;
+import be.technifutur.models.forms.OrderForm;
 
 public interface OrderService {
     OrderDTO getOne(Long id);
